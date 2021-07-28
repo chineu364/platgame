@@ -8,31 +8,26 @@
 </head>
 
 <body>
+
     <div>
-        <h1 style="display: inline-block;">you have</h1>
-        <h1 id='money' style="display: inline-block;">NaN</h1>
-        <h1 style="display: inline-block;">money</h1>
+        <h3 style="display: inline-block;">you have</h3>
+        <h3 id='money' style="display: inline-block;">NaN</h3>
+        <h3 style="display: inline-block;">money</h3>
     </div>
 
     <div>
-        <button onclick="mainsub('block', 'none')">main</button>
-        <button onclick="mainsub('none', 'block')">sub</button>
+        <button onclick="menu = 'main'">main</button>
+        <button onclick="menu = 'sub'">sub</button>
     </div>
 
-    <button class="main" onclick="money += 1;">add money</button>
+    <button class="main" id="add1" onclick="buy1();">add money</button>
     <div>
-        <button class="sub" onclick="moneycolor = 'red';">color red</button>
-        <button class="sub" onclick="moneycolor = 'blue';">color blue</button>
+        <button class="sub" onclick="changeColor();">color change</button>
     </div>
 
     <script>
-        function mainsub(main, sub) {
-            changeSee(document.getElementsByClassName('main'), main);
-            changeSee(document.getElementsByClassName('sub'), sub);
-        }
-
         function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
         }
 
         function changeSee(coll, see) {
@@ -41,14 +36,61 @@
             }
         }
 
-        money = 0;
+        function changeColor() {
+            if (moneycolor == 'red') {
+                moneycolor = 'blue';
+            } else if (moneycolor == 'blue') {
+                moneycolor = 'green';
+            } else if (moneycolor == 'green') {
+                moneycolor = 'red';
+            } else {
+                console.log("error: color " + moneycolor + " is not defined")
+            }
+        }
+
+        function changeMenu() {
+            if (menu == 'main') {
+                changeSee(document.getElementsByClassName('main'), 'block');
+                changeSee(document.getElementsByClassName('sub'), 'none');
+            } else if (menu == 'sub') {
+                changeSee(document.getElementsByClassName('main'), 'none');
+                changeSee(document.getElementsByClassName('sub'), 'block');
+            } else {
+                console.log("error: menu " + menu + " is not defined.")
+            }
+        }
+
+        function buy1() {
+            money -= notmoneycost;
+            notmoney += 1;
+            notmoneycost += 10
+        }
+
+        money = 10;
+        notmoney = 0;
+        notmoneycost = 10;
         moneycolor = 'blue';
+        menu = 'main';
+
+        // option
         setInterval(function() {
-            document.getElementById('money').innerHTML = numberWithCommas(money);
-            document.getElementById('money').style.color = moneycolor;
+            $('#money')
+                .html(numberWithCommas(money))
+                .css('color', moneycolor)
+            $('#add1')
+                .html('add money <br> cost:' + notmoneycost)
+            changeMenu()
         }, 30);
-        document.getElementById('money').style.fontSize = '50px';
+
+        // main
+        setInterval(function() {
+            money += notmoney / 10
+        }, 100);
+        document.getElementById('money').style.fontSize = '40px';
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
