@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>htmltest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <h1 style="display: inline-block;">you have</h1>
+        <h1 id='money' style="display: inline-block;">NaN</h1>
+        <h1 style="display: inline-block;">money</h1>
+    </div>
+
+    <div>
+        <button onclick="mainsub('block', 'none')">main</button>
+        <button onclick="mainsub('none', 'block')">sub</button>
+    </div>
+
+    <button class="main" onclick="money += 1;">add money</button>
+    <div>
+        <button class="sub" onclick="moneycolor = 'red';">color red</button>
+        <button class="sub" onclick="moneycolor = 'blue';">color blue</button>
+    </div>
+
+    <script>
+        function mainsub(main, sub) {
+            changeSee(document.getElementsByClassName('main'), main);
+            changeSee(document.getElementsByClassName('sub'), sub);
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function changeSee(coll, see) {
+            for (var i = 0, len = coll.length; i < len; i++) {
+                coll[i].style["display"] = see;
+            }
+        }
+
+        money = 0;
+        moneycolor = 'blue';
+        setInterval(function() {
+            document.getElementById('money').innerHTML = numberWithCommas(money);
+            document.getElementById('money').style.color = moneycolor;
+        }, 30);
+        document.getElementById('money').style.fontSize = '50px';
+    </script>
+</body>
+
+</html>
