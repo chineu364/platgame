@@ -84,7 +84,7 @@
 
         // main
         setInterval(function() {
-            money += notmoney / 10
+            money += Number((notmoney / 10).toString().replace(/(\.\d{3}).+/, "$1"))
         }, 100);
         document.getElementById('money').style.fontSize = '40px';
     </script>
