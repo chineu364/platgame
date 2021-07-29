@@ -10,9 +10,9 @@
 <body>
 
     <div>
-        <h3 style="display: inline-block;">you have</h3>
+        <h3 class='moneytext' style="display: inline-block;">you have</h3>
         <h3 id='money' style="display: inline-block;">NaN</h3>
-        <h3 style="display: inline-block;">money</h3>
+        <h3 class='moneytext' style="display: inline-block;">money</h3>
     </div>
 
     <div>
@@ -22,7 +22,8 @@
 
     <button class="main" id="add1" onclick="buy1();">add money</button>
     <div>
-        <button class="sub" onclick="changeColor();">color change</button>
+        <button class="sub" onclick="changeColor();">text color change</button>
+        <button class="sub" onclick="backgroundchangeColor();">background color change</button>
     </div>
 
     <script>
@@ -48,6 +49,18 @@
             }
         }
 
+        function backgroundchangeColor() {
+            if (backgroundcolor == 'white') {
+                backgroundcolor = 'black';
+                textcolor = 'white';
+            } else if (backgroundcolor == 'black') {
+                backgroundcolor = 'white';
+                textcolor = 'black';
+            } else {
+                console.log("error: color " + backgroundcolor + " is not defined")
+            }
+        }
+
         function changeMenu() {
             if (menu == 'main') {
                 changeSee(document.getElementsByClassName('main'), 'block');
@@ -61,16 +74,20 @@
         }
 
         function buy1() {
-            money -= notmoneycost;
-            notmoney += 1;
-            notmoneycost += 10
+            if (moneymachinecost - 100 <= money) {
+                money -= moneymachinecost;
+                moneymachine += 0.05;
+                moneymachinecost += 10
+            }
         }
 
         money = 10;
-        notmoney = 0;
-        notmoneycost = 10;
+        moneymachine = 0;
+        moneymachinecost = 10;
         moneycolor = 'blue';
         menu = 'main';
+        backgroundcolor = 'white';
+        textcolor = 'black';
 
         // option
         setInterval(function() {
@@ -78,14 +95,18 @@
                 .html(numberWithCommas(money))
                 .css('color', moneycolor)
             $('#add1')
-                .html('add money <br> cost:' + notmoneycost)
+                .html('add money <br> cost:' + moneymachinecost)
+            $('.moneytext')
+                .css('color', textcolor)
+            document.bgColor = backgroundcolor;
             changeMenu()
-        }, 30);
+        }, 50);
 
         // main
         setInterval(function() {
-            money += Number((notmoney / 10).toString().replace(/(\.\d{3}).+/, "$1"))
-        }, 100);
+            money += moneymachine
+        }, 30);
+
         document.getElementById('money').style.fontSize = '40px';
     </script>
 
