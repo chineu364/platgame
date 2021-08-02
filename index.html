@@ -10,20 +10,30 @@
 <body>
 
     <div>
-        <h3 class='moneytext' style="display: inline-block;">you have</h3>
+        <h3 class='optiontext' style="display: inline-block;">you have</h3>
         <h3 id='money' style="display: inline-block;">NaN</h3>
-        <h3 class='moneytext' style="display: inline-block;">money</h3>
+        <h3 class='optiontext' style="display: inline-block;">money</h3>
     </div>
 
     <div>
-        <button onclick="menu = 'main'">main</button>
-        <button onclick="menu = 'sub'">sub</button>
+        <button onclick="player.menu = 'main'">main</button>
+        <button onclick="player.menu = 'option'">option</button>
+        <button onclick="player.menu = 'autobuyer'">autobuyer</button>
     </div>
 
-    <button class="main" id="add1" onclick="buy1();">add money</button>
     <div>
-        <button class="sub" onclick="changeColor();">text color change</button>
-        <button class="sub" onclick="backgroundchangeColor();">background color change</button>
+        <button class="main button" id="add1" onclick="buy1();">add a</button>
+    </div>
+    <div>
+        <h3 class="option optiontext" id='pasttime'>you spend NaN years in this reset</h3>
+        <h3 class="option optiontext" id='playtime'>you have played for NaN years</h3>
+        <button class="option button" onclick="changeColor();">text color change</button>
+        <button class="option button" onclick="backgroundchangeColor();">background color change</button>
+        <button class="option button" onclick="reset();">reset</button>
+    </div>
+    <div>
+        <!--abr is acronyms of autobuyer-->
+        <button class="autobuyer button" id="aabr" onclick="abr('aabr')">a autobuyer: off</button>
     </div>
 
     <script>
@@ -38,76 +48,156 @@
         }
 
         function changeColor() {
-            if (moneycolor == 'red') {
-                moneycolor = 'blue';
-            } else if (moneycolor == 'blue') {
-                moneycolor = 'green';
-            } else if (moneycolor == 'green') {
-                moneycolor = 'red';
+            if (player.moneycolor == 'black') {
+                player.moneycolor = 'blue';
+            } else if (player.moneycolor == 'blue') {
+                player.moneycolor = '#abcdef';
+            } else if (player.moneycolor == '#abcdef') {
+                player.moneycolor = 'green'
+            } else if (player.moneycolor == 'green') {
+                player.moneycolor = '#123456';
+            } else if (player.moneycolor == '#123456') {
+                player.moneycolor = 'red';
+            } else if (player.moneycolor == 'red') {
+                player.moneycolor = 'white'
+            } else if (player.moneycolor == 'white') {
+                player.moneycolor = 'black'
             } else {
-                console.log("error: color " + moneycolor + " is not defined")
+                console.log("error: color " + player.moneycolor + " is not defined")
             }
         }
 
         function backgroundchangeColor() {
-            if (backgroundcolor == 'white') {
-                backgroundcolor = 'black';
-                textcolor = 'white';
-            } else if (backgroundcolor == 'black') {
-                backgroundcolor = 'white';
-                textcolor = 'black';
+            if (player.backgroundcolor == 'white') {
+                player.backgroundcolor = 'black';
+                player.textcolor = 'white';
+            } else if (player.backgroundcolor == 'black') {
+                player.backgroundcolor = 'white';
+                player.textcolor = 'black';
             } else {
-                console.log("error: color " + backgroundcolor + " is not defined")
+                console.log("error: color " + player.backgroundcolor + " is not defined")
             }
         }
 
         function changeMenu() {
-            if (menu == 'main') {
+            if (player.menu == 'main') {
                 changeSee(document.getElementsByClassName('main'), 'block');
-                changeSee(document.getElementsByClassName('sub'), 'none');
-            } else if (menu == 'sub') {
+                changeSee(document.getElementsByClassName('option'), 'none');
+                changeSee(document.getElementsByClassName('autobuyer'), 'none');
+            } else if (player.menu == 'option') {
                 changeSee(document.getElementsByClassName('main'), 'none');
-                changeSee(document.getElementsByClassName('sub'), 'block');
+                changeSee(document.getElementsByClassName('option'), 'block');
+                changeSee(document.getElementsByClassName('autobuyer'), 'none');
+            } else if (player.menu == 'autobuyer') {
+                changeSee(document.getElementsByClassName('main'), 'none');
+                changeSee(document.getElementsByClassName('option'), 'none');
+                changeSee(document.getElementsByClassName('autobuyer'), 'block');
             } else {
-                console.log("error: menu " + menu + " is not defined.")
+                console.log("error: menu " + player.menu + " is not defined.")
             }
+        }
+
+        function timeunit(time) { //google
+            if (time >= 31536000) {
+                return Math.floor(time / 31536000) + " years, " + Math.floor((time % 31536000) / 86400) + " days, " + Math.floor((time % 86400) / 3600) + " hours, " + Math.floor((time % 3600) / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
+            } else if (time >= 86400) {
+                return Math.floor(time / 86400) + " days, " + Math.floor((time % 86400) / 3600) + " hours, " + Math.floor((time % 3600) / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
+            } else if (time >= 3600) {
+                return Math.floor(time / 3600) + " hours, " + Math.floor((time % 3600) / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
+            } else if (time >= 60) {
+                return Math.floor(time / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
+            } else return Math.floor(time % 60) + " seconds"
         }
 
         function buy1() {
-            if (moneymachinecost - 100 <= money) {
-                money -= moneymachinecost;
-                moneymachine += 0.05;
-                moneymachinecost += 10
+            if (player.acost <= player.money) {
+                player.time = 0;
+                player.money -= player.acost;
+                player.a += 1;
+                switch (player.acost) {
+                    case 0:
+                        player.acost = 10
+                            //no break ;)
+                    default:
+                        player.acost *= 1.5 * (parseInt(player.a / 10) + 1);
+                        player.acost = Math.floor(player.acost);
+                }
             }
         }
 
-        money = 10;
-        moneymachine = 0;
-        moneymachinecost = 10;
-        moneycolor = 'blue';
-        menu = 'main';
-        backgroundcolor = 'white';
-        textcolor = 'black';
+        function abr(abrname) {
+            if (player[abrname] == "off") {
+                player[abrname] = "on"
+            } else if (player[abrname] == "on") {
+                player[abrname] = "off"
+            }
+        }
+
+        function reset() {
+            player = {
+                money: 0,
+                time: 0,
+                unittime: "0 second",
+                realtime: 0,
+                unitrealtime: "0 second",
+                a: 0,
+                acost: 0,
+                moneycolor: 'black',
+                backgroundcolor: 'white',
+                textcolor: 'black',
+                aabr: "off"
+            }
+        }
 
         // option
         setInterval(function() {
             $('#money')
-                .html(numberWithCommas(money))
-                .css('color', moneycolor)
+                .html(numberWithCommas(player.money))
+                .css('color', player.moneycolor)
             $('#add1')
-                .html('add money <br> cost:' + moneymachinecost)
-            $('.moneytext')
-                .css('color', textcolor)
-            document.bgColor = backgroundcolor;
+                .html('add a <br> cost:' + player.acost + '<br> count:' + player.a)
+            $('#pasttime')
+                .html('you spend ' + timeunit(player.time) + ' in this reset')
+            $('#playtime')
+                .html('you have played for ' + timeunit(player.realtime))
+            $('.optiontext')
+                .css('color', player.textcolor)
+            $('#aabr')
+                .html('a autobuyer: ' + player.aabr)
+            document.bgColor = player.backgroundcolor;
             changeMenu()
-        }, 50);
+        }, 30);
 
         // main
         setInterval(function() {
-            money += moneymachine
+            player.money += player.a * 0.03;
+            player.time += 0.03;
+            if (player.acost <= player.money && player.aabr == "on") {
+                buy1();
+            }
         }, 30);
 
+        //second
+        setInterval(function() {
+            player.realtime += 1;
+        }, 1000);
+
         document.getElementById('money').style.fontSize = '40px';
+
+        var player = {
+            money: 0,
+            time: 0,
+            unittime: "0 second",
+            realtime: 0,
+            unitrealtime: "0 second",
+            a: 0,
+            acost: 0,
+            moneycolor: 'black',
+            menu: 'main',
+            backgroundcolor: 'white',
+            textcolor: 'black',
+            aabr: "off"
+        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

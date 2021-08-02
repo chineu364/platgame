@@ -1,15 +1,7 @@
-.main {
+.button {
     background: #abcdef;
     color: black;
     padding: 20px;
     border-radius: 5px;
     display: block;
-}
-
-.sub {
-    background: #abcdef;
-    color: black;
-    padding: 20px;
-    border-radius: 5px;
-    display: none;
 }
