@@ -117,7 +117,7 @@ setInterval(function() {
         .html(numberWithCommas(player.money))
         .css('color', player.moneycolor)
     $('#aadd')
-        .html('add a <br> cost:' + player.acost + '<br> count:' + player.a)
+        .html('add a <br> cost:' + numberWithCommas(player.acost) + '<br> count:' + player.a)
     $('#pasttime')
         .html('you spend ' + timeunit(player.time) + ' in this reset')
     $('#playtime')
