@@ -112,12 +112,12 @@ function reset() {
 }
 
 function save() {
-    localStorage.setItem(gamesave, JSON.stringify(player));
+    localStorage.setItem("gamesave", JSON.stringify(player));
 }
 
 function load() {
-    if (typeof localStorage.getItem(gamesave) === "undefined") return;
-    player = JSON.parse(localStorage.getItem(gamesave));
+    if (typeof localStorage.getItem("gamesave") === "undefined") return;
+    player = JSON.parse(localStorage.getItem("gamesave"));
 }
 
 // option
