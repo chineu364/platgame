@@ -95,19 +95,22 @@ function abr(abrname) {
 }
 
 function reset() {
-    player = {
-        money: 0,
-        time: 0,
-        unittime: "0 second",
-        realtime: 0,
-        unitrealtime: "0 second",
-        timeacc: 1,
-        a: 0,
-        acost: 0,
-        moneycolor: 'black',
-        backgroundcolor: 'white',
-        textcolor: 'black',
-        aabr: "off"
+    if (window.confirm("Do you really want to erase all your progress?")) {
+        player = {
+            money: 0,
+            time: 0,
+            unittime: "0 second",
+            realtime: 0,
+            unitrealtime: "0 second",
+            timeacc: 1,
+            a: 0,
+            acost: 0,
+            moneycolor: 'black',
+            backgroundcolor: 'white',
+            textcolor: 'black',
+            aabr: "off"
+        }
+        save();
     }
 }
 
