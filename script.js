@@ -152,6 +152,11 @@ setInterval(function() {
     }
 }, 30);
 
+//autosave
+setInterval(function() {
+    save()
+}, 30000);
+
 document.getElementById('money').style.fontSize = '40px';
 load();
 
