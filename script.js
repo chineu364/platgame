@@ -112,7 +112,7 @@ function reset() {
 }
 
 function save() {
-    localStorage.setItem(gamesave) = JSON.stringify(player);
+    localStorage.setItem(gamesave, JSON.stringify(player));
 }
 
 function load() {
