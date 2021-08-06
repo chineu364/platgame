@@ -111,6 +111,15 @@ function reset() {
     }
 }
 
+function save() {
+    localStorage.getItem(gamesave) = JSON.stringify(player);
+}
+
+function load() {
+    if (typeof localStorage.getItem(gamesave) === "undefined") return;
+    player = JSON.parse(localStorage.getItem(gamesave));
+}
+
 // option
 setInterval(function() {
     $('#money')
@@ -141,6 +150,7 @@ setInterval(function() {
 }, 30);
 
 document.getElementById('money').style.fontSize = '40px';
+load();
 
 var player = {
     money: 0,
