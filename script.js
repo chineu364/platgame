@@ -70,7 +70,7 @@ function timeunit(time) { //google
     } else return Math.floor(time % 60) + " seconds"
 }
 
-function buy1() {
+function buya() {
     if (player.acost <= player.money) {
         player.time = 0;
         player.money -= player.acost;
@@ -83,6 +83,16 @@ function buy1() {
                 player.acost *= 1.25 * (parseInt(player.a / 10) + 1);
                 player.acost = Math.floor(player.acost);
         }
+    }
+}
+
+function buyb() {
+    if (player.bcost <= player.money) {
+        player.time = 0;
+        player.money -= player.bcost;
+        player.b += 1;
+        player.bcost *= 1.5001 * (parseInt(player.b / 10) + 1);
+        player.bcost = Math.floor(player.bcost);
     }
 }
 
@@ -104,11 +114,15 @@ function reset() {
             unitrealtime: "0 second",
             timeacc: 1,
             a: 0,
+            b: 0,
             acost: 0,
+            bcost: 10000,
             moneycolor: 'black',
+            menu: 'option',
             backgroundcolor: 'white',
             textcolor: 'black',
-            aabr: "off"
+            aabr: "off",
+            babr: "off"
         }
         save();
     }
@@ -129,7 +143,9 @@ setInterval(function() {
         .html(numberWithCommas(player.money))
         .css('color', player.moneycolor)
     $('#aadd')
-        .html('add a <br> cost:' + numberWithCommas(player.acost) + '<br> count:' + player.a)
+        .html('add a <br> cost:' + numberWithCommas(player.acost) + '<br> count:' + numberWithCommas(player.a))
+    $('#badd')
+        .html('add b <br> cost:' + numberWithCommas(player.bcost) + '<br> count:' + numberWithCommas(player.b))
     $('#pasttime')
         .html('you spend ' + timeunit(player.time) + ' in this reset')
     $('#playtime')
@@ -138,6 +154,8 @@ setInterval(function() {
         .css('color', player.textcolor)
     $('#aabr')
         .html('a autobuyer: ' + player.aabr)
+    $('#babr')
+        .html('b autobuyer: ' + player.babr)
     document.bgColor = player.backgroundcolor;
     changeMenu()
 }, 30);
@@ -145,10 +163,13 @@ setInterval(function() {
 // main
 setInterval(function() {
     player.money += player.a * 0.03 * player.timeacc;
+    player.a += player.b * 1.25
     player.time += 0.03 * player.timeacc;
     player.realtime += 0.03 * player.timeacc;
     if (player.acost <= player.money && player.aabr == "on") {
-        buy1();
+        buya();
+    } else if (player.bcost <= player.money && player.babr == "on") {
+        buyb();
     }
 }, 30);
 
@@ -168,10 +189,13 @@ var player = {
     unitrealtime: "0 second",
     timeacc: 1,
     a: 0,
+    b: 0,
     acost: 0,
+    bcost: 10000,
     moneycolor: 'black',
     menu: 'main',
     backgroundcolor: 'white',
     textcolor: 'black',
-    aabr: "off"
+    aabr: "off",
+    babr: "off"
 }
