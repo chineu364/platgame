@@ -8,40 +8,43 @@
 </head>
 
 <body>
+    <header>
+        <div>
+            <h3 class='optiontext' style="display: inline-block;">you have</h3>
+            <h3 id='money' style="display: inline-block;">NaN</h3>
+            <h3 class='optiontext' style="display: inline-block;">money</h3>
+        </div>
 
-    <div>
-        <h3 class='optiontext' style="display: inline-block;">you have</h3>
-        <h3 id='money' style="display: inline-block;">NaN</h3>
-        <h3 class='optiontext' style="display: inline-block;">money</h3>
-    </div>
+        <nav>
+            <button onclick="player.menu = 'main'">main</button>
+            <button onclick="player.menu = 'option'">option</button>
+            <button onclick="player.menu = 'autobuyer'">autobuyer</button>
+        </nav>
+    </header>
 
-    <div>
-        <button onclick="player.menu = 'main'">main</button>
-        <button onclick="player.menu = 'option'">option</button>
-        <button onclick="player.menu = 'autobuyer'">autobuyer</button>
-    </div>
+    <main>
+        <article>
+            <button class="main button" id="aadd" onclick="buya();">add a</button>
+            <button class="main button" id="badd" onclick="buyb();">add b</button>
+        </article>
+        <article>
+            <h3 class="option optiontext" id='pasttime'>you spend NaN years in this reset</h3>
+            <h3 class="option optiontext" id='playtime'>you have played for NaN years</h3>
+            <button class="option button" onclick="changeColor();">change text color</button>
+            <button class="option button" onclick="backgroundchangeColor();">change background color</button>
+            <button class="option button" onclick="save();">save</button>
+            <button class="option button" onclick="reset();">reset</button>
+        </article>
+        <article>
+            <!--abr is acronyms of autobuyer-->
+            <button class="autobuyer button" id="aabr" onclick="abr('aabr')">a autobuyer: off</button>
+            <button class="autobuyer button" id="babr" onclick="abr('babr')">b autobuyer: off</button>
+        </article>
+    </main>
 
-    <div>
-        <button class="main button" id="aadd" onclick="buya();">add a</button>
-        <button class="main button" id="badd" onclick="buyb();">add b</button>
-    </div>
-    <div>
-        <h3 class="option optiontext" id='pasttime'>you spend NaN years in this reset</h3>
-        <h3 class="option optiontext" id='playtime'>you have played for NaN years</h3>
-        <button class="option button" onclick="changeColor();">change text color</button>
-        <button class="option button" onclick="backgroundchangeColor();">change background color</button>
-        <button class="option button" onclick="save();">save</button>
-        <button class="option button" onclick="reset();">reset</button>
-    </div>
-    <div>
-        <!--abr is acronyms of autobuyer-->
-        <button class="autobuyer button" id="aabr" onclick="abr('aabr')">a autobuyer: off</button>
-        <button class="autobuyer button" id="babr" onclick="abr('babr')">b autobuyer: off</button>
-    </div>
-
-    <div id="bottom">
+    <footer id="bottom">
         <a href="https://discord.gg/BzMDYCqjyc">discord</a>
-    </div>
+    </footer>
 
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
