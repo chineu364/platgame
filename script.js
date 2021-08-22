@@ -24,7 +24,7 @@ function changeColor() {
     } else if (player.moneycolor == 'white') {
         player.moneycolor = 'black'
     } else {
-        console.log("error: color " + player.moneycolor + " is not defined")
+        console.error("error: color " + player.moneycolor + " is not defined")
     }
 }
 
@@ -36,7 +36,7 @@ function backgroundchangeColor() {
         player.backgroundcolor = 'white';
         player.textcolor = 'black';
     } else {
-        console.log("error: color " + player.backgroundcolor + " is not defined")
+        console.error("error: color " + player.backgroundcolor + " is not defined")
     }
 }
 
@@ -54,7 +54,7 @@ function changeMenu() {
         changeSee(document.getElementsByClassName('option'), 'none');
         changeSee(document.getElementsByClassName('autobuyer'), 'block');
     } else {
-        console.log("error: menu " + player.menu + " is not defined.")
+        console.error("error: menu " + player.menu + " is not defined.")
     }
 }
 
