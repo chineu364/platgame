@@ -9,50 +9,50 @@ function changeSee(coll, see) {
 }
 
 function changeColor() {
-    if (player.moneycolor == 'black') {
-        player.moneycolor = 'blue';
-    } else if (player.moneycolor == 'blue') {
-        player.moneycolor = '#abcdef';
-    } else if (player.moneycolor == '#abcdef') {
-        player.moneycolor = 'green'
-    } else if (player.moneycolor == 'green') {
-        player.moneycolor = '#123456';
-    } else if (player.moneycolor == '#123456') {
-        player.moneycolor = 'red';
-    } else if (player.moneycolor == 'red') {
-        player.moneycolor = 'white'
-    } else if (player.moneycolor == 'white') {
-        player.moneycolor = 'black'
+    if (player.moneycolor == "black") {
+        player.moneycolor = "blue";
+    } else if (player.moneycolor == "blue") {
+        player.moneycolor = "#abcdef";
+    } else if (player.moneycolor == "#abcdef") {
+        player.moneycolor = "green"
+    } else if (player.moneycolor == "green") {
+        player.moneycolor = "#123456";
+    } else if (player.moneycolor == "#123456") {
+        player.moneycolor = "red";
+    } else if (player.moneycolor == "red") {
+        player.moneycolor = "white"
+    } else if (player.moneycolor == "white") {
+        player.moneycolor = "black"
     } else {
         console.error("error: color " + player.moneycolor + " is not defined")
     }
 }
 
 function backgroundchangeColor() {
-    if (player.backgroundcolor == 'white') {
-        player.backgroundcolor = 'black';
-        player.textcolor = 'white';
-    } else if (player.backgroundcolor == 'black') {
-        player.backgroundcolor = 'white';
-        player.textcolor = 'black';
+    if (player.backgroundcolor == "white") {
+        player.backgroundcolor = "black";
+        player.textcolor = "white";
+    } else if (player.backgroundcolor == "black") {
+        player.backgroundcolor = "white";
+        player.textcolor = "black";
     } else {
         console.error("error: color " + player.backgroundcolor + " is not defined")
     }
 }
 
 function changeMenu() {
-    if (player.menu == 'main') {
-        changeSee(document.getElementsByClassName('main'), 'block');
-        changeSee(document.getElementsByClassName('option'), 'none');
-        changeSee(document.getElementsByClassName('autobuyer'), 'none');
-    } else if (player.menu == 'option') {
-        changeSee(document.getElementsByClassName('main'), 'none');
-        changeSee(document.getElementsByClassName('option'), 'block');
-        changeSee(document.getElementsByClassName('autobuyer'), 'none');
-    } else if (player.menu == 'autobuyer') {
-        changeSee(document.getElementsByClassName('main'), 'none');
-        changeSee(document.getElementsByClassName('option'), 'none');
-        changeSee(document.getElementsByClassName('autobuyer'), 'block');
+    if (player.menu == "main") {
+        changeSee(document.getElementsByClassName("main"), "block");
+        changeSee(document.getElementsByClassName("option"), "none");
+        changeSee(document.getElementsByClassName("autobuyer"), "none");
+    } else if (player.menu == "option") {
+        changeSee(document.getElementsByClassName("main"), "none");
+        changeSee(document.getElementsByClassName("option"), "block");
+        changeSee(document.getElementsByClassName("autobuyer"), "none");
+    } else if (player.menu == "autobuyer") {
+        changeSee(document.getElementsByClassName("main"), "none");
+        changeSee(document.getElementsByClassName("option"), "none");
+        changeSee(document.getElementsByClassName("autobuyer"), "block");
     } else {
         console.error("error: menu " + player.menu + " is not defined.")
     }
@@ -117,10 +117,10 @@ function reset() {
             b: 0,
             acost: 0,
             bcost: 8000,
-            moneycolor: 'black',
-            menu: 'option',
-            backgroundcolor: 'white',
-            textcolor: 'black',
+            moneycolor: "black",
+            menu: "option",
+            backgroundcolor: "white",
+            textcolor: "black",
             aabr: "off",
             babr: "off"
         }
@@ -139,23 +139,23 @@ function load() {
 
 // option
 setInterval(function() {
-    $('#money')
+    $("#money")
         .html(numberWithCommas(player.money))
-        .css('color', player.moneycolor)
-    $('#aadd')
-        .html('add a <br> cost:' + numberWithCommas(player.acost) + '<br> count:' + numberWithCommas(player.a))
-    $('#badd')
-        .html('add b <br> cost:' + numberWithCommas(player.bcost) + '<br> count:' + numberWithCommas(player.b))
-    $('#pasttime')
-        .html('you spend ' + timeunit(player.time) + ' in this reset')
-    $('#playtime')
-        .html('you have played for ' + timeunit(player.realtime))
-    $('.optiontext')
-        .css('color', player.textcolor)
-    $('#aabr')
-        .html('a autobuyer: ' + player.aabr)
-    $('#babr')
-        .html('b autobuyer: ' + player.babr)
+        .css("color", player.moneycolor)
+    $("#aadd")
+        .html("add a <br> cost:" + numberWithCommas(player.acost) + "<br> count:" + numberWithCommas(player.a))
+    $("#badd")
+        .html("add b <br> cost:" + numberWithCommas(player.bcost) + "<br> count:" + numberWithCommas(player.b))
+    $("#pasttime")
+        .html("you spend " + timeunit(player.time) + " in this reset")
+    $("#playtime")
+        .html("you have played for " + timeunit(player.realtime))
+    $(".optiontext")
+        .css("color", player.textcolor)
+    $("#aabr")
+        .html("a autobuyer: " + player.aabr)
+    $("#babr")
+        .html("b autobuyer: " + player.babr)
     document.bgColor = player.backgroundcolor;
     changeMenu()
 }, 30);
@@ -178,7 +178,7 @@ setInterval(function() {
     save()
 }, 30000);
 
-document.getElementById('money').style.fontSize = '40px';
+document.getElementById("money").style.fontSize = "40px";
 load();
 
 var player = {
@@ -192,10 +192,10 @@ var player = {
     b: 0,
     acost: 0,
     bcost: 8000,
-    moneycolor: 'black',
-    menu: 'main',
-    backgroundcolor: 'white',
-    textcolor: 'black',
+    moneycolor: "black",
+    menu: "main",
+    backgroundcolor: "white",
+    textcolor: "black",
     aabr: "off",
     babr: "off"
 }
