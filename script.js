@@ -1,3 +1,22 @@
+var player = {
+    money: 0,
+    time: 0,
+    unittime: "0 second",
+    realtime: 0,
+    unitrealtime: "0 second",
+    timeacc: 1,
+    a: 0,
+    b: 0,
+    acost: 0,
+    bcost: 8000,
+    moneycolor: "black",
+    menu: "main",
+    backgroundcolor: "white",
+    textcolor: "black",
+    aabr: "off",
+    babr: "off"
+}
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -109,6 +128,15 @@ function abr(abrname) {
     }
 }
 
+function save() {
+    localStorage.setItem("gamesave", JSON.stringify(player));
+}
+
+function load() {
+    if (typeof localStorage.getItem("gamesave") === "undefined") return;
+    player = JSON.parse(localStorage.getItem("gamesave"));
+}
+
 function reset() {
     if (window.confirm("Do you really want to erase all your progress?")) {
         player = {
@@ -131,15 +159,6 @@ function reset() {
         }
         save();
     }
-}
-
-function save() {
-    localStorage.setItem("gamesave", JSON.stringify(player));
-}
-
-function load() {
-    if (typeof localStorage.getItem("gamesave") === "undefined") return;
-    player = JSON.parse(localStorage.getItem("gamesave"));
 }
 
 // option
@@ -185,22 +204,3 @@ setInterval(function() {
 
 document.getElementById("money").style.fontSize = "40px";
 load();
-
-var player = {
-    money: 0,
-    time: 0,
-    unittime: "0 second",
-    realtime: 0,
-    unitrealtime: "0 second",
-    timeacc: 1,
-    a: 0,
-    b: 0,
-    acost: 0,
-    bcost: 8000,
-    moneycolor: "black",
-    menu: "main",
-    backgroundcolor: "white",
-    textcolor: "black",
-    aabr: "off",
-    babr: "off"
-}
