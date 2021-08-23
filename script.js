@@ -9,12 +9,16 @@ var player = {
     b: 0,
     acost: 0,
     bcost: 8000,
-    moneycolor: "black",
     menu: "main",
-    backgroundcolor: "white",
-    textcolor: "black",
     aabr: "off",
-    babr: "off"
+    babr: "off",
+    option: {
+        moneycolor: "black",
+        backgroundcolor: "white",
+        textcolor: "black",
+        colornum: 0,
+        colorlist: ["black", "blue", "#abcdef", "green", "#123456", "red", "white"]
+    }
 };
 
 function changeSee(coll, see) {
@@ -24,30 +28,20 @@ function changeSee(coll, see) {
 }
 
 function changeColor() {
-    if (player.moneycolor === "black") {
-        player.moneycolor = "blue";
-    } else if (player.moneycolor === "blue") {
-        player.moneycolor = "#abcdef";
-    } else if (player.moneycolor === "#abcdef") {
-        player.moneycolor = "green";
-    } else if (player.moneycolor === "green") {
-        player.moneycolor = "#123456";
-    } else if (player.moneycolor === "#123456") {
-        player.moneycolor = "red";
-    } else if (player.moneycolor === "red") {
-        player.moneycolor = "white";
-    } else if (player.moneycolor === "white") {
-        player.moneycolor = "black";
+    player.option.colornum++;
+    if (player.option.colornum >= 7) {
+        player.option.colornum = 0;
     }
+    player.option.moneycolor = player.option.colorlist[parseInt(player.option.colornum)];
 }
 
 function backgroundchangeColor() {
-    if (player.backgroundcolor === "white") {
-        player.backgroundcolor = "black";
-        player.textcolor = "white";
-    } else if (player.backgroundcolor === "black") {
-        player.backgroundcolor = "white";
-        player.textcolor = "black";
+    if (player.option.backgroundcolor === "white") {
+        player.option.backgroundcolor = "black";
+        player.option.textcolor = "white";
+    } else if (player.option.backgroundcolor === "black") {
+        player.option.backgroundcolor = "white";
+        player.option.textcolor = "black";
     }
 }
 
@@ -155,7 +149,7 @@ function reset() {
 setInterval(function() {
     $("#money")
         .html(player.money.toLocaleString())
-        .css("color", player.moneycolor);
+        .css("color", player.option.moneycolor);
     $("#aadd")
         .html("add a <br> cost:" + player.acost.toLocaleString() + "<br> count:" + player.a.toLocaleString());
     $("#badd")
@@ -170,7 +164,7 @@ setInterval(function() {
         .html("a autobuyer: " + player.aabr);
     $("#babr")
         .html("b autobuyer: " + player.babr);
-    document.bgColor = player.backgroundcolor;
+    document.bgColor = player.option.backgroundcolor;
     changeMenu();
 }, 30);
 
