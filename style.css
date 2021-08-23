@@ -1,14 +1,14 @@
 .button {
-    background: #abcdef;
-    color: black;
-    padding: 20px;
-    border-radius: 5px;
-    display: block;
+  background: #abcdef;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  display: block;
 }
 
 #bottom {
-    width: 100%;
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
 }
