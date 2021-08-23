@@ -15,17 +15,17 @@ var player = {
     textcolor: "black",
     aabr: "off",
     babr: "off"
-}
+};
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 function changeSee(coll, see) {
     for (var i = 0, len = coll.length; i < len; i++) {
         coll[i].style["display"] = see;
     }
-}
+};
 
 function changeColor() {
     if (player.moneycolor === "black") {
@@ -43,7 +43,7 @@ function changeColor() {
     } else if (player.moneycolor === "white") {
         player.moneycolor = "black";
     }
-}
+};
 
 function backgroundchangeColor() {
     if (player.backgroundcolor === "white") {
@@ -53,7 +53,7 @@ function backgroundchangeColor() {
         player.backgroundcolor = "white";
         player.textcolor = "black";
     }
-}
+};
 
 function changeMenu() {
     if (player.menu === "main") {
@@ -69,7 +69,7 @@ function changeMenu() {
         changeSee(document.getElementsByClassName("option"), "none");
         changeSee(document.getElementsByClassName("autobuyer"), "block");
     }
-}
+};
 
 function timeunit(time) {
     let seconds = 1;
@@ -86,7 +86,7 @@ function timeunit(time) {
     } else if (time >= minutes) {
         return Math.floor(time / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
     } else { return Math.floor(time % minutes) + " seconds"; }
-}
+};
 
 function buya() {
     if (player.acost <= player.money) {
@@ -102,7 +102,7 @@ function buya() {
                 player.acost = Math.floor(player.acost);
         }
     }
-}
+};
 
 function buyb() {
     if (player.bcost <= player.money) {
@@ -112,7 +112,7 @@ function buyb() {
         player.bcost *= 1.5001 * (player.b / 10 + 1);
         player.bcost = Math.floor(player.bcost);
     }
-}
+};
 
 function abr(abrname) {
     if (player[abrname] === "off") {
@@ -120,16 +120,16 @@ function abr(abrname) {
     } else if (player[abrname] === "on") {
         player[abrname] = "off";
     }
-}
+};
 
 function save() {
     localStorage.setItem("gamesave", JSON.stringify(player));
-}
+};
 
 function load() {
     if (typeof localStorage.getItem("gamesave") === "undefined") return;
     player = JSON.parse(localStorage.getItem("gamesave"));
-}
+};
 
 function reset() {
     if (window.confirm("Do you really want to erase all your progress?")) {
@@ -153,27 +153,27 @@ function reset() {
         }
         save();
     }
-}
+};
 
 // option
 setInterval(function() {
     $("#money")
         .html(numberWithCommas(player.money))
-        .css("color", player.moneycolor)
+        .css("color", player.moneycolor);
     $("#aadd")
-        .html("add a <br> cost:" + numberWithCommas(player.acost) + "<br> count:" + numberWithCommas(player.a))
+        .html("add a <br> cost:" + numberWithCommas(player.acost) + "<br> count:" + numberWithCommas(player.a));
     $("#badd")
-        .html("add b <br> cost:" + numberWithCommas(player.bcost) + "<br> count:" + numberWithCommas(player.b))
+        .html("add b <br> cost:" + numberWithCommas(player.bcost) + "<br> count:" + numberWithCommas(player.b));
     $("#pasttime")
-        .html("you spend " + timeunit(player.time) + " in this reset")
+        .html("you spend " + timeunit(player.time) + " in this reset");
     $("#playtime")
-        .html("you have played for " + timeunit(player.realtime))
+        .html("you have played for " + timeunit(player.realtime));
     $(".optiontext")
-        .css("color", player.textcolor)
+        .css("color", player.textcolor);
     $("#aabr")
-        .html("a autobuyer: " + player.aabr)
+        .html("a autobuyer: " + player.aabr);
     $("#babr")
-        .html("b autobuyer: " + player.babr)
+        .html("b autobuyer: " + player.babr);
     document.bgColor = player.backgroundcolor;
     changeMenu();
 }, 30);
@@ -181,7 +181,7 @@ setInterval(function() {
 // main
 setInterval(function() {
     player.money += player.a * 0.03 * player.timeacc;
-    player.a += player.b * 1.25
+    player.a += player.b * 1.25;
     player.time += 0.03 * player.timeacc;
     player.realtime += 0.03 * player.timeacc;
     if (player.acost <= player.money && player.aabr === "on") {
