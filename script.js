@@ -98,7 +98,7 @@ function buya() {
                 player.acost = 25;
                 break;
             default:
-                player.acost *= 1.25 * (parseInt(player.a / 10) + 1);
+                player.acost *= 1.25 * (player.a / 10 + 1);
                 player.acost = Math.floor(player.acost);
         }
     }
@@ -109,7 +109,7 @@ function buyb() {
         player.time = 0;
         player.money -= player.bcost;
         player.b += 1;
-        player.bcost *= 1.5001 * (parseInt(player.b / 10) + 1);
+        player.bcost *= 1.5001 * (player.b / 10 + 1);
         player.bcost = Math.floor(player.bcost);
     }
 }
