@@ -19,7 +19,7 @@ var player = {
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-};
+}
 
 function changeSee(coll, see) {
     for (var i = 0, len = coll.length; i < len; i++) {
