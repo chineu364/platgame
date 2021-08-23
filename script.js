@@ -23,7 +23,7 @@ function numberWithCommas(x) {
 
 function changeSee(coll, see) {
     for (var i = 0, len = coll.length; i < len; i++) {
-        coll[i].style["display"] = see;
+        coll[parseInt(i)].style["display"] = see;
     }
 }
 
