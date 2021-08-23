@@ -123,7 +123,7 @@ function save() {
 }
 
 function load() {
-    if (typeof localStorage.getItem("gamesave") === "undefined") return;
+    if (typeof localStorage.getItem("gamesave") === "undefined") { return; }
     player = JSON.parse(localStorage.getItem("gamesave"));
 }
 
@@ -146,7 +146,7 @@ function reset() {
             textcolor: "black",
             aabr: "off",
             babr: "off"
-        }
+        };
         save();
     }
 }
