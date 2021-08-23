@@ -17,10 +17,6 @@ var player = {
     babr: "off"
 };
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
-
 function changeSee(coll, see) {
     for (var i = 0, len = coll.length; i < len; i++) {
         coll[parseInt(i, 10)].style["display"] = see;
@@ -158,12 +154,12 @@ function reset() {
 // option
 setInterval(function() {
     $("#money")
-        .html(numberWithCommas(player.money))
+        .html(player.money.toLocaleString())
         .css("color", player.moneycolor);
     $("#aadd")
-        .html("add a <br> cost:" + numberWithCommas(player.acost) + "<br> count:" + numberWithCommas(player.a));
+        .html("add a <br> cost:" + player.acost.toLocaleString() + "<br> count:" + player.a.toLocaleString());
     $("#badd")
-        .html("add b <br> cost:" + numberWithCommas(player.bcost) + "<br> count:" + numberWithCommas(player.b));
+        .html("add b <br> cost:" + player.bcost.toLocaleString() + "<br> count:" + player.b.toLocaleString());
     $("#pasttime")
         .html("you spend " + timeunit(player.time) + " in this reset");
     $("#playtime")
