@@ -58,16 +58,21 @@ function changeMenu() {
     }
 }
 
-function timeunit(time) { //google
-    if (time >= 31536000) {
-        return Math.floor(time / 31536000) + " years, " + Math.floor((time % 31536000) / 86400) + " days, " + Math.floor((time % 86400) / 3600) + " hours, " + Math.floor((time % 3600) / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
-    } else if (time >= 86400) {
-        return Math.floor(time / 86400) + " days, " + Math.floor((time % 86400) / 3600) + " hours, " + Math.floor((time % 3600) / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
-    } else if (time >= 3600) {
-        return Math.floor(time / 3600) + " hours, " + Math.floor((time % 3600) / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
-    } else if (time >= 60) {
-        return Math.floor(time / 60) + " minutes, and " + Math.floor(time % 60) + " seconds"
-    } else return Math.floor(time % 60) + " seconds"
+function timeunit(time) {
+    seconds = 1;
+    minutes = 60 * seconds;
+    hours = 60 * minutes;
+    days = 24 * hours;
+    years = 365 * days;
+    if (time >= years) {
+        return Math.floor(time / years) + " years, " + Math.floor((time % years) / days) + " days, " + Math.floor((time % days) / hours) + " hours, " + Math.floor((time % hours) / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
+    } else if (time >= days) {
+        return Math.floor(time / days) + " days, " + Math.floor((time % days) / hours) + " hours, " + Math.floor((time % hours) / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
+    } else if (time >= hours) {
+        return Math.floor(time / hours) + " hours, " + Math.floor((time % hours) / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
+    } else if (time >= minutes) {
+        return Math.floor(time / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
+    } else { return Math.floor(time % minutes) + " seconds"; }
 }
 
 function buya() {
@@ -77,8 +82,8 @@ function buya() {
         player.a += 1;
         switch (player.acost) {
             case 0:
-                player.acost = 10
-                    //no break ;)
+                player.acost = 25;
+                break;
             default:
                 player.acost *= 1.25 * (parseInt(player.a / 10) + 1);
                 player.acost = Math.floor(player.acost);
@@ -98,9 +103,9 @@ function buyb() {
 
 function abr(abrname) {
     if (player[abrname] == "off") {
-        player[abrname] = "on"
+        player[abrname] = "on";
     } else if (player[abrname] == "on") {
-        player[abrname] = "off"
+        player[abrname] = "off";
     }
 }
 
@@ -157,7 +162,7 @@ setInterval(function() {
     $("#babr")
         .html("b autobuyer: " + player.babr)
     document.bgColor = player.backgroundcolor;
-    changeMenu()
+    changeMenu();
 }, 30);
 
 // main
@@ -175,7 +180,7 @@ setInterval(function() {
 
 //autosave
 setInterval(function() {
-    save()
+    save();
 }, 30000);
 
 document.getElementById("money").style.fontSize = "40px";
