@@ -72,11 +72,11 @@ function changeMenu() {
 }
 
 function timeunit(time) {
-    seconds = 1;
-    minutes = 60 * seconds;
-    hours = 60 * minutes;
-    days = 24 * hours;
-    years = 365 * days;
+    let seconds = 1;
+    let minutes = 60 * seconds;
+    let hours = 60 * minutes;
+    let days = 24 * hours;
+    let years = 365 * days;
     if (time >= years) {
         return Math.floor(time / years) + " years, " + Math.floor((time % years) / days) + " days, " + Math.floor((time % days) / hours) + " hours, " + Math.floor((time % hours) / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
     } else if (time >= days) {
