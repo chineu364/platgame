@@ -28,19 +28,19 @@ function changeSee(coll, see) {
 }
 
 function changeColor() {
-    if (player.moneycolor == "black") {
+    if (player.moneycolor === "black") {
         player.moneycolor = "blue";
-    } else if (player.moneycolor == "blue") {
+    } else if (player.moneycolor === "blue") {
         player.moneycolor = "#abcdef";
-    } else if (player.moneycolor == "#abcdef") {
+    } else if (player.moneycolor === "#abcdef") {
         player.moneycolor = "green"
-    } else if (player.moneycolor == "green") {
+    } else if (player.moneycolor === "green") {
         player.moneycolor = "#123456";
-    } else if (player.moneycolor == "#123456") {
+    } else if (player.moneycolor === "#123456") {
         player.moneycolor = "red";
-    } else if (player.moneycolor == "red") {
+    } else if (player.moneycolor === "red") {
         player.moneycolor = "white"
-    } else if (player.moneycolor == "white") {
+    } else if (player.moneycolor === "white") {
         player.moneycolor = "black"
     } else {
         console.error("error: color " + player.moneycolor + " is not defined")
@@ -48,10 +48,10 @@ function changeColor() {
 }
 
 function backgroundchangeColor() {
-    if (player.backgroundcolor == "white") {
+    if (player.backgroundcolor === "white") {
         player.backgroundcolor = "black";
         player.textcolor = "white";
-    } else if (player.backgroundcolor == "black") {
+    } else if (player.backgroundcolor === "black") {
         player.backgroundcolor = "white";
         player.textcolor = "black";
     } else {
@@ -60,15 +60,15 @@ function backgroundchangeColor() {
 }
 
 function changeMenu() {
-    if (player.menu == "main") {
+    if (player.menu === "main") {
         changeSee(document.getElementsByClassName("main"), "block");
         changeSee(document.getElementsByClassName("option"), "none");
         changeSee(document.getElementsByClassName("autobuyer"), "none");
-    } else if (player.menu == "option") {
+    } else if (player.menu === "option") {
         changeSee(document.getElementsByClassName("main"), "none");
         changeSee(document.getElementsByClassName("option"), "block");
         changeSee(document.getElementsByClassName("autobuyer"), "none");
-    } else if (player.menu == "autobuyer") {
+    } else if (player.menu === "autobuyer") {
         changeSee(document.getElementsByClassName("main"), "none");
         changeSee(document.getElementsByClassName("option"), "none");
         changeSee(document.getElementsByClassName("autobuyer"), "block");
@@ -190,9 +190,9 @@ setInterval(function() {
     player.a += player.b * 1.25
     player.time += 0.03 * player.timeacc;
     player.realtime += 0.03 * player.timeacc;
-    if (player.acost <= player.money && player.aabr == "on") {
+    if (player.acost <= player.money && player.aabr === "on") {
         buya();
-    } else if (player.bcost <= player.money && player.babr == "on") {
+    } else if (player.bcost <= player.money && player.babr === "on") {
         buyb();
     }
 }, 30);
