@@ -33,15 +33,15 @@ function changeColor() {
     } else if (player.moneycolor === "blue") {
         player.moneycolor = "#abcdef";
     } else if (player.moneycolor === "#abcdef") {
-        player.moneycolor = "green"
+        player.moneycolor = "green";
     } else if (player.moneycolor === "green") {
         player.moneycolor = "#123456";
     } else if (player.moneycolor === "#123456") {
         player.moneycolor = "red";
     } else if (player.moneycolor === "red") {
-        player.moneycolor = "white"
+        player.moneycolor = "white";
     } else if (player.moneycolor === "white") {
-        player.moneycolor = "black"
+        player.moneycolor = "black";
     }
 }
 
@@ -115,9 +115,9 @@ function buyb() {
 }
 
 function abr(abrname) {
-    if (player[abrname] == "off") {
+    if (player[abrname] === "off") {
         player[abrname] = "on";
-    } else if (player[abrname] == "on") {
+    } else if (player[abrname] === "on") {
         player[abrname] = "off";
     }
 }
