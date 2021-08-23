@@ -115,10 +115,10 @@ function buyb() {
 }
 
 function abr(abrname) {
-    if (player[abrname] === "off") {
-        player[abrname] = "on";
-    } else if (player[abrname] === "on") {
-        player[abrname] = "off";
+    if (player[String(abrname)] === "off") {
+        player[String(abrname)] = "on";
+    } else if (player[String(abrname)] === "on") {
+        player[String(abrname)] = "off";
     }
 }
 
