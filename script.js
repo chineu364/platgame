@@ -25,7 +25,7 @@ function changeSee(coll, see) {
     for (var i = 0, len = coll.length; i < len; i++) {
         coll[i].style["display"] = see;
     }
-};
+}
 
 function changeColor() {
     if (player.moneycolor === "black") {
@@ -43,7 +43,7 @@ function changeColor() {
     } else if (player.moneycolor === "white") {
         player.moneycolor = "black";
     }
-};
+}
 
 function backgroundchangeColor() {
     if (player.backgroundcolor === "white") {
@@ -53,7 +53,7 @@ function backgroundchangeColor() {
         player.backgroundcolor = "white";
         player.textcolor = "black";
     }
-};
+}
 
 function changeMenu() {
     if (player.menu === "main") {
@@ -69,7 +69,7 @@ function changeMenu() {
         changeSee(document.getElementsByClassName("option"), "none");
         changeSee(document.getElementsByClassName("autobuyer"), "block");
     }
-};
+}
 
 function timeunit(time) {
     let seconds = 1;
@@ -86,7 +86,7 @@ function timeunit(time) {
     } else if (time >= minutes) {
         return Math.floor(time / minutes) + " minutes, and " + Math.floor(time % minutes) + " seconds";
     } else { return Math.floor(time % minutes) + " seconds"; }
-};
+}
 
 function buya() {
     if (player.acost <= player.money) {
@@ -102,7 +102,7 @@ function buya() {
                 player.acost = Math.floor(player.acost);
         }
     }
-};
+}
 
 function buyb() {
     if (player.bcost <= player.money) {
@@ -112,7 +112,7 @@ function buyb() {
         player.bcost *= 1.5001 * (player.b / 10 + 1);
         player.bcost = Math.floor(player.bcost);
     }
-};
+}
 
 function abr(abrname) {
     if (player[abrname] === "off") {
@@ -120,16 +120,16 @@ function abr(abrname) {
     } else if (player[abrname] === "on") {
         player[abrname] = "off";
     }
-};
+}
 
 function save() {
     localStorage.setItem("gamesave", JSON.stringify(player));
-};
+}
 
 function load() {
     if (typeof localStorage.getItem("gamesave") === "undefined") return;
     player = JSON.parse(localStorage.getItem("gamesave"));
-};
+}
 
 function reset() {
     if (window.confirm("Do you really want to erase all your progress?")) {
@@ -153,7 +153,7 @@ function reset() {
         }
         save();
     }
-};
+}
 
 // option
 setInterval(function() {
