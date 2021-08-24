@@ -29,7 +29,7 @@ function changeSee(coll, see) {
 
 function changeColor() {
     player.option.colornum++;
-    if (player.option.colornum >= 7) {
+    if (player.option.colornum >= player.option.colorlist.length) {
         player.option.colornum = 0;
     }
     player.option.moneycolor = player.option.colorlist[parseInt(player.option.colornum, 10)];
