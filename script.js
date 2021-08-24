@@ -32,7 +32,7 @@ function changeColor() {
     if (player.option.colornum >= 7) {
         player.option.colornum = 0;
     }
-    player.option.moneycolor = player.option.colorlist[parseInt(player.option.colornum)];
+    player.option.moneycolor = player.option.colorlist[parseInt(player.option.colornum, 10)];
 }
 
 function backgroundchangeColor() {
