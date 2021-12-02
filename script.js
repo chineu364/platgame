@@ -21,13 +21,13 @@ var player = {
     }
 };
 
-function changeSee(coll, see) {
+function ChangeSee(coll, see) {
     for (var i = 0, len = coll.length; i < len; i++) {
         coll[parseInt(i, 10)].style["display"] = see;
     }
 }
 
-function changeColor() {
+function ChangeColor() {
     player.option.colornum++;
     if (player.option.colornum >= player.option.colorlist.length) {
         player.option.colornum = 0;
@@ -35,7 +35,7 @@ function changeColor() {
     player.option.moneycolor = player.option.colorlist[parseInt(player.option.colornum, 10)];
 }
 
-function backgroundchangeColor() {
+function BackgroundChangeColor() {
     if (player.option.backgroundcolor === "white") {
         player.option.backgroundcolor = "black";
         player.option.textcolor = "white";
@@ -45,23 +45,23 @@ function backgroundchangeColor() {
     }
 }
 
-function changeMenu() {
+function ChangeMenu() {
     if (player.menu === "main") {
-        changeSee(document.getElementsByClassName("main"), "block");
-        changeSee(document.getElementsByClassName("option"), "none");
-        changeSee(document.getElementsByClassName("autobuyer"), "none");
+        ChangeSee(document.getElementsByClassName("main"), "block");
+        ChangeSee(document.getElementsByClassName("option"), "none");
+        ChangeSee(document.getElementsByClassName("autobuyer"), "none");
     } else if (player.menu === "option") {
-        changeSee(document.getElementsByClassName("main"), "none");
-        changeSee(document.getElementsByClassName("option"), "block");
-        changeSee(document.getElementsByClassName("autobuyer"), "none");
+        ChangeSee(document.getElementsByClassName("main"), "none");
+        ChangeSee(document.getElementsByClassName("option"), "block");
+        ChangeSee(document.getElementsByClassName("autobuyer"), "none");
     } else if (player.menu === "autobuyer") {
-        changeSee(document.getElementsByClassName("main"), "none");
-        changeSee(document.getElementsByClassName("option"), "none");
-        changeSee(document.getElementsByClassName("autobuyer"), "block");
+        ChangeSee(document.getElementsByClassName("main"), "none");
+        ChangeSee(document.getElementsByClassName("option"), "none");
+        ChangeSee(document.getElementsByClassName("autobuyer"), "block");
     }
 }
 
-function timeunit(time) {
+function TimeUnit(time) {
     let seconds = 1;
     let minutes = 60 * seconds;
     let hours = 60 * minutes;
@@ -78,7 +78,7 @@ function timeunit(time) {
     } else { return Math.floor(time % minutes) + " seconds"; }
 }
 
-function buya() {
+function Buya() {
     if (player.acost <= player.money) {
         player.time = 0;
         player.money -= player.acost;
@@ -94,7 +94,7 @@ function buya() {
     }
 }
 
-function buyb() {
+function Buyb() {
     if (player.bcost <= player.money) {
         player.time = 0;
         player.money -= player.bcost;
@@ -123,7 +123,7 @@ function load() {
 
 function reset() {
     if (window.confirm("Do you really want to erase all your progress?")) {
-        player = {
+        var player = {
             money: 0,
             time: 0,
             unittime: "0 second",
@@ -134,12 +134,16 @@ function reset() {
             b: 0,
             acost: 0,
             bcost: 8000,
-            moneycolor: "black",
-            menu: "option",
-            backgroundcolor: "white",
-            textcolor: "black",
+            menu: "main",
             aabr: "off",
-            babr: "off"
+            babr: "off",
+            option: {
+                moneycolor: "black",
+                backgroundcolor: "white",
+                textcolor: "black",
+                colornum: 0,
+                colorlist: ["black", "blue", "#abcdef", "green", "#123456", "red", "white"]
+            }
         };
         save();
     }
@@ -155,17 +159,17 @@ setInterval(function() {
     $("#badd")
         .html("add b <br> cost:" + player.bcost.toLocaleString() + "<br> count:" + player.b.toLocaleString());
     $("#pasttime")
-        .html("you spend " + timeunit(player.time) + " in this reset");
+        .html("you spend " + TimeUnit(player.time) + " in this reset");
     $("#playtime")
-        .html("you have played for " + timeunit(player.realtime));
+        .html("you have played for " + TimeUnit(player.realtime));
     $(".optiontext")
-        .css("color", player.textcolor);
+        .css("color", player.option.textcolor);
     $("#aabr")
         .html("a autobuyer: " + player.aabr);
     $("#babr")
         .html("b autobuyer: " + player.babr);
     document.bgColor = player.option.backgroundcolor;
-    changeMenu();
+    ChangeMenu();
 }, 30);
 
 // main
@@ -175,9 +179,9 @@ setInterval(function() {
     player.time += 0.03 * player.timeacc;
     player.realtime += 0.03 * player.timeacc;
     if (player.acost <= player.money && player.aabr === "on") {
-        buya();
+        Buya();
     } else if (player.bcost <= player.money && player.babr === "on") {
-        buyb();
+        Buyb();
     }
 }, 30);
 
